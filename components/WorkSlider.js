@@ -35,18 +35,20 @@ const projects = [
     path: '/sullajeans.png',
     url: 'https://sullajeans.netlify.app/',
   },
- ,{
+  {
     title: 'Loja de Roupas',
     path: '/loja.png',
     url: 'https://jaymisom123.github.io/loja/',
   },
   {
-    title: 'Projeto 2',
-    path: '/thumb2.jpg',
+    title: 'Clínica JR',
+    path: '/clinicajr.png',
+    url: 'https://clinicajr.netlify.app/',
   },
   {
-    title: 'Projeto 3',
-    path: '/thumb3.jpg',
+    title: 'JR studio',
+    path: '/jrstudio.png',
+    url: 'https://jrstudio.netlify.app/',
   },
   {
     title: 'Projeto 4',
@@ -67,8 +69,8 @@ const WorkGallery = () => {
               <Image
                 src={project.path}
                 alt={project.title}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: 'cover' }}
                 className="transition-transform duration-300 group-hover:scale-105"
               />
             </div>
