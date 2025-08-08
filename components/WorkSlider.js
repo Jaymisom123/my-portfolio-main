@@ -11,19 +11,19 @@ function getPreviewSrc(url) {
 
 const WorkGallery = () => {
   return (
-    <section className="w-full px-4 py-10 mt-4 relative flex justify-center items-center animated-glow">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 z-10 w-full max-w-7xl">
+    <section className="w-full px-4 py-6 sm:py-8 lg:py-10 mt-2 relative flex justify-center items-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 z-10 w-full max-w-7xl">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="relative rounded-lg overflow-hidden group bg-neutral-800 shadow-md"
+            className="relative rounded-xl overflow-hidden group bg-neutral-800/80 border border-white/5 shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="relative w-full aspect-video">
               <img
                 src={project.thumb || getPreviewSrc(project.url)}
                 alt={project.title}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (project.thumb && !target.dataset.fallbackTried) {
@@ -44,14 +44,14 @@ const WorkGallery = () => {
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <div className="bg-white/20 backdrop-blur-md rounded-full p-4 hover:scale-110 transition-transform duration-300">
-                  <BsPlayFill className="text-white text-4xl" />
+                <div className="bg-white/15 backdrop-blur rounded-full p-3 hover:scale-110 transition-transform duration-300 ring-1 ring-white/10">
+                  <BsPlayFill className="text-white text-3xl" />
                 </div>
               </a>
             )}
 
             <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between gap-2 z-10">
-              <div className="bg-black/70 text-white px-3 py-1 rounded text-xs md:text-sm">
+              <div className="bg-black/70 text-white px-3 py-1 rounded text-xs md:text-sm max-w-[75%] truncate">
                 {project.title}
               </div>
               {project.category && (
@@ -63,34 +63,7 @@ const WorkGallery = () => {
           </div>
         ))}
       </div>
-      <style jsx>{`
-        .animated-glow::before {
-          content: '';
-          position: absolute;
-          top: -2px;
-          left: -2px;
-          right: -2px;
-          bottom: -2px;
-          border-radius: 16px;
-          background: linear-gradient(270deg, #8D939B, #F53125, #6A49E8, #8D939B);
-          background-size: 800% 800%;
-          z-index: 0;
-          filter: blur(15px);
-          animation: borderGlow 8s linear infinite;
-        }
-
-        @keyframes borderGlow {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}</style>
+      {/* efeito glow removido para melhor performance */}
     </section>
   );
 };
