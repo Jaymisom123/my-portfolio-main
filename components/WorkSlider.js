@@ -1,60 +1,13 @@
 'use client';
-import Image from 'next/image';
+// Usaremos <img> para maior compatibilidade com imagens remotas de serviços de screenshot
 import { BsPlayFill } from 'react-icons/bs';
+import { projects } from '../utils/projects';
 
-const projects = [
-  {
-    title: 'JR movies',
-    path: '/JRmovies.png',
-    url: 'https://jrmovies.netlify.app/',
-  },
-  {
-    title: 'clone netFlix',
-    path: '/netfilx.png',
-    url: 'https://jaymisom123.github.io/cafeteria/',
-  },
-  
-  {
-    title: 'JR <CodeIA>',
-    path: '/codeIA.png',
-    url: 'https://jrcodeia.netlify.app/',
-  },
-
-  {
-    title: 'Cafeteria Landing Page',
-    path: '/cafeteira.png',
-    url: 'https://jaymisom123.github.io/cafeteria/',
-  },
-  {
-    title: 'Burger show',
-    path: '/devburger.png',
-    url: 'https://github.com/Jaymisom123/devburger-interface',
-  },
-  {
-    title: 'Sulla Jeans',
-    path: '/sullajeans.png',
-    url: 'https://sullajeans.netlify.app/',
-  },
-  {
-    title: 'Loja de Roupas',
-    path: '/loja.png',
-    url: 'https://jaymisom123.github.io/loja/',
-  },
-  {
-    title: 'Clínica JR',
-    path: '/clinicajr.png',
-    url: 'https://clinicajr.netlify.app/',
-  },
-  {
-    title: 'JR studio',
-    path: '/jrstudio.png',
-    url: 'https://jrstudio.netlify.app/',
-  },
-  {
-    title: 'Projeto 4',
-    path: '/thumb4.jpg',
-  },
-];
+function getPreviewSrc(url) {
+  const encoded = encodeURIComponent(url);
+  // Usa serviço de screenshot direto (mais estável que parsing OG via API)
+  return `https://image.thum.io/get/width/1000/crop/562/noanimate/${encoded}`;
+}
 
 const WorkGallery = () => {
   return (
@@ -66,12 +19,21 @@ const WorkGallery = () => {
             className="relative rounded-lg overflow-hidden group bg-neutral-800 shadow-md"
           >
             <div className="relative w-full aspect-video">
-              <Image
-                src={project.path}
+              <img
+                src={project.thumb || getPreviewSrc(project.url)}
                 alt={project.title}
-                fill
-                style={{ objectFit: 'cover' }}
-                className="transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (project.thumb && !target.dataset.fallbackTried) {
+                    // Se a imagem local falhar, tenta screenshot do site
+                    target.dataset.fallbackTried = '1';
+                    target.src = getPreviewSrc(project.url);
+                    return;
+                  }
+                  target.src = `https://placehold.co/1000x562/1f2937/ffffff?text=${encodeURIComponent(project.title)}`;
+                }}
               />
             </div>
 
@@ -88,8 +50,15 @@ const WorkGallery = () => {
               </a>
             )}
 
-            <div className="absolute bottom-2 left-2 bg-black/70 text-white px-3 py-1 rounded text-sm z-10">
-              {project.title}
+            <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between gap-2 z-10">
+              <div className="bg-black/70 text-white px-3 py-1 rounded text-xs md:text-sm">
+                {project.title}
+              </div>
+              {project.category && (
+                <div className="bg-white/15 backdrop-blur px-2 py-1 rounded text-[10px] md:text-xs text-white">
+                  {project.category}
+                </div>
+              )}
             </div>
           </div>
         ))}

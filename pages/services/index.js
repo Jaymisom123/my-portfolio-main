@@ -84,7 +84,7 @@ const Services = () => {
                             exit='hidden'
                             className='h2 xl:mt-8'
                         >
-                            My Services{' '}
+                            Meus Serviços
                            
                         </motion.h2>
                         <div
@@ -98,14 +98,13 @@ const Services = () => {
                                 exit='hidden'
                                 className='max-w-[450px] mx-auto lg:mx-0 text-md md:max-h-[350px]'
                             >
-                                I’m a Full Stack JavaScript Developer, specialized in building modern, responsive websites with outstanding user experience. I work with technologies
-                                like HTML5, CSS3, JavaScript, TypeScript, React, and Next.js to create rich, intuitive, and optimized interfaces.
-                                On the backend, I use Node.js, Express, and databases like MongoDB and PostgreSQL to develop scalable and secure RESTful APIs.
-                                I have experience integrating third-party services, implementing user authentication, access control, and organizing project architecture with a focus on performance and clean code.
-                                I also have strong UI/UX Design skills, using Figma to design functional prototypes and user-centric
-                                interfaces. This allows me to contribute to every stage of the project — from design to full implementation.
-                                Beyond technical skills, I highly value communication, organization, and teamwork. I’m always open to feedback and focused on understanding the specific needs of each
-                                client or project to deliver high-quality, custom-built solutions.
+                                Sou Desenvolvedor Full Stack JavaScript, especializado em criar sites modernos e responsivos com ótima experiência do usuário. Trabalho com tecnologias
+                                como HTML5, CSS3, JavaScript, TypeScript, React e Next.js para construir interfaces ricas, intuitivas e otimizadas.
+                                No backend, utilizo Node.js, Express e bancos como MongoDB e PostgreSQL para desenvolver APIs REST escaláveis e seguras.
+                                Tenho experiência em integrar serviços de terceiros, implementar autenticação de usuários, controle de acesso e estruturar a arquitetura do projeto com foco em desempenho e código limpo.
+                                Também possuo forte base em Design UI/UX, usando Figma para prototipar interfaces funcionais e centradas no usuário. Isso me permite contribuir em todas as etapas do projeto — do design à implementação completa.
+                                Além das habilidades técnicas, valorizo comunicação, organização e trabalho em equipe. Estou sempre aberto a feedback e focado em entender as necessidades específicas de cada
+                                cliente ou projeto para entregar soluções personalizadas e de alta qualidade.
                             </motion.p>
                         </div>
                     </div>
