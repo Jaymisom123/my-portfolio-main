@@ -8,7 +8,7 @@ import {fadeIn} from '../../variants';
 
 const Work = () => {
   return (
-    <div className='min-h-screen bg-primary/30 py-20 sm:py-24 lg:py-28 flex items-start'>
+    <div className='min-h-screen bg-primary/30 py-20 sm:py-24 lg:py-28 flex items-start overflow-x-hidden overflow-y-auto'>
       <Circles />
       <div className='container mx-auto'>
         <div className='flex flex-col xl:flex-row gap-x-8'>
